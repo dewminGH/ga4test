@@ -22,10 +22,14 @@ const checkFN = () => {
   //   }`,
   // );
   ReactGA.event(identifier, {
-    event_category: category ?? "web-v3-cart",
-    event_label: `web-v3-nextJS - user id:xxxx`,
-    context: cntx ?? "no-extends",
+    send_to: "G-2WSVFVWRZ6",
+    msg: `${identifier} -label:${label} -sub:${sub} -extends:${cntx ?? "no-extends"}`,
   });
+  // ReactGA.event(identifier, {
+  //   event_category: category ?? "web-v3-cart",
+  //   event_label: `web-v3-nextJS - user id:xxxx`,
+  //   context: cntx ?? "no-extends",
+  // });
   console.log("end");
 };
 
