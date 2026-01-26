@@ -26,7 +26,7 @@ const checkFN = () => {
 
 export default function Home() {
   useEffect(() => {
-    ReactGA.initialize("G4_TRACKING_ID");
+    ReactGA.initialize("G-2WSVFVWRZ6");
   }, []);
 
   return (
