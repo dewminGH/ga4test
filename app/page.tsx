@@ -16,11 +16,16 @@ const checkFN = () => {
       : "unknown";
   const label = `web-v3-nextJS -user id:${userID}`;
   const sub = category ?? "web-v3-cart";
-  ReactGA.event(
-    `${identifier} -label: ${label} -sub: ${sub} -extends: ${
-      cntx ?? "no-extends"
-    }`,
-  );
+  // ReactGA.event(
+  //   `${identifier} -label: ${label} -sub: ${sub} -extends: ${
+  //     cntx ?? "no-extends"
+  //   }`,
+  // );
+  ReactGA.event(identifier, {
+    event_category: category ?? "web-v3-cart",
+    event_label: `web-v3-nextJS - user id:xxxx`,
+    context: cntx ?? "no-extends",
+  });
   console.log("end");
 };
 
