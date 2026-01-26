@@ -43,7 +43,7 @@ const checkFNs = () => {
 
 const checkFN = () => {
   const category = "category";
-  const identifier = "new";
+  const identifier = "test ga4 kit";
   const cntx = "temp";
 
   const userID =
@@ -53,13 +53,17 @@ const checkFN = () => {
 
   const label = `web-v3-nextJS -user id:${userID}`;
   const sub = category ?? "web-v3-cart";
-
+  const xxxx = JSON.stringify({
+    item_id: "productId",
+    quantity: 22,
+    metaData: "sss",
+  });
   ReactGA.gtag("event", identifier, {
     // DO NOT use send_to here if you already initialize with the same ID
     category: sub,
     label,
     context: cntx ?? "no-extends",
-    msg: `${identifier} -label:${label} -sub:${sub} -extends:${cntx ?? "no-extends"}.  1fjwrfhwhfwjhfw wrf wrfw frwf wrfwr f wrf wr 2fw rfw f wrf rw fwr f wr f rwf wr f3 wr f wr frw f wr f rw rw 4f rw fwr fwfw rf wrf w66`,
+    msg: `${identifier} -label:${label} -sub:${sub} - ${xxxx}`,
   });
 };
 
