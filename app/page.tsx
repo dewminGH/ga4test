@@ -4,7 +4,7 @@ import ReactGA from "react-ga4";
 import Image from "next/image";
 import { useEffect } from "react";
 
-const checkFN = () => {
+const checkFNs = () => {
   console.log("start");
   // GA Common Helper
   const category = "category";
@@ -31,6 +31,28 @@ const checkFN = () => {
   //   context: cntx ?? "no-extends",
   // });
   console.log("end");
+};
+
+const checkFN = () => {
+  const category = "category";
+  const identifier = "new";
+  const cntx = "temp";
+
+  const userID =
+    typeof window !== "undefined"
+      ? (localStorage.getItem("id") ?? "guest")
+      : "unknown";
+
+  const label = `web-v3-nextJS -user id:${userID}`;
+  const sub = category ?? "web-v3-cart";
+
+  ReactGA.gtag("event", identifier, {
+    // DO NOT use send_to here if you already initialize with the same ID
+    category: sub,
+    label,
+    context: cntx ?? "no-extends",
+    msg: `${identifier} -label:${label} -sub:${sub} -extends:${cntx ?? "no-extends"}`,
+  });
 };
 
 export default function Home() {
