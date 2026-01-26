@@ -59,7 +59,7 @@ const checkFN = () => {
     category: sub,
     label,
     context: cntx ?? "no-extends",
-    msg: `${identifier} -label:${label} -sub:${sub} -extends:${cntx ?? "no-extends"}`,
+    msg: `${identifier} -label:${label} -sub:${sub} -extends:${cntx ?? "no-extends"}.  1fjwrfhwhfwjhfw wrf wrfw frwf wrfwr f wrf wr 2fw rfw f wrf rw fwr f wr f rwf wr f3 wr f wr frw f wr f rw rw 4f rw fwr fwfw rf wrf w66`,
   });
 };
 
