@@ -3,6 +3,7 @@ import ReactGA from "react-ga4";
 
 import Image from "next/image";
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const checkFNs = () => {
   console.log("start");
@@ -137,6 +138,15 @@ const s3 = () => {
 };
 
 export default function Home() {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: pathname,
+    });
+  }, [pathname]);
+
   useEffect(() => {
     ReactGA.initialize("G-2WSVFVWRZ6");
   }, []);
