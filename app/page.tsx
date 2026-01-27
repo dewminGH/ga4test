@@ -68,8 +68,8 @@ const checkFN = () => {
   });
 };
 
-const s1 = () => {
-  console.log("s111111");
+const s0 = () => {
+  console.log("s000");
   ReactGA.event("view_item", {
     currency: "AUD",
     value: 199.0,
@@ -85,11 +85,46 @@ const s1 = () => {
   });
 };
 
+const s1 = () => {
+  console.log("s111111");
+  ReactGA.event("add_to_cart", {
+    currency: "AUD",
+    value: 199.0,
+    items: [
+      {
+        item_id: "SKU_123",
+        item_name: "Premium Subscription",
+        price: 199.0,
+        quantity: 1,
+      },
+    ],
+  });
+};
+
 const s2 = () => {
   console.log("s222222");
   ReactGA.event("begin_checkout", {
     currency: "AUD",
     value: 199.0,
+    items: [
+      {
+        item_id: "SKU_123",
+        item_name: "Premium Subscription",
+        price: 199.0,
+        quantity: 1,
+      },
+    ],
+  });
+};
+
+const s3 = () => {
+  console.log("s3333333");
+  ReactGA.event("purchase", {
+    transaction_id: "T_100045",
+    currency: "AUD",
+    value: 199.0,
+    tax: 0,
+    shipping: 0,
     items: [
       {
         item_id: "SKU_123",
@@ -118,8 +153,10 @@ export default function Home() {
           priority
         />
         <div onClick={() => checkFN()}>ssssssspspspspsppspsps</div>
+        <div onClick={() => s0()}>s00000</div>
         <div onClick={() => s1()}>11111</div>
         <div onClick={() => s2()}>2222222</div>
+        <div onClick={() => s3()}>3333333</div>
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
             To get started, edit the page.tsx file.
