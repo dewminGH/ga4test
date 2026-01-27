@@ -43,7 +43,7 @@ const checkFNs = () => {
 
 const checkFN = () => {
   const category = "category";
-  const identifier = "test ga4 kit";
+  const identifier = "test ga4 kit today";
   const cntx = "temp";
 
   const userID =
@@ -63,7 +63,8 @@ const checkFN = () => {
     category: sub,
     label,
     context: cntx ?? "no-extends",
-    msg: `${identifier} -label:${label} -sub:${sub} - ${xxxx}`,
+    // msg: `${identifier} -label:${label} -sub:${sub} - ${xxxx}`,
+    msg: '"{"pr":{"amount":240,"currency":"NZD","lable":null},"id":149,"nm":"Yorkshire Terrier - Full Breed Profile"}"}]',
   });
 };
 
