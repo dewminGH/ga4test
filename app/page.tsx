@@ -68,6 +68,39 @@ const checkFN = () => {
   });
 };
 
+const s1 = () => {
+  console.log("s111111");
+  ReactGA.event("view_item", {
+    currency: "AUD",
+    value: 199.0,
+    items: [
+      {
+        item_id: "SKU_123",
+        item_name: "Premium Subscription",
+        price: 199.0,
+        quantity: 1,
+        item_category: "Subscription",
+      },
+    ],
+  });
+};
+
+const s2 = () => {
+  console.log("s222222");
+  ReactGA.event("begin_checkout", {
+    currency: "AUD",
+    value: 199.0,
+    items: [
+      {
+        item_id: "SKU_123",
+        item_name: "Premium Subscription",
+        price: 199.0,
+        quantity: 1,
+      },
+    ],
+  });
+};
+
 export default function Home() {
   useEffect(() => {
     ReactGA.initialize("G-2WSVFVWRZ6");
@@ -85,6 +118,8 @@ export default function Home() {
           priority
         />
         <div onClick={() => checkFN()}>ssssssspspspspsppspsps</div>
+        <div onCanPlay={() => s1()}>11111</div>
+        <div onCanPlay={() => s2()}>2222222</div>
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
             To get started, edit the page.tsx file.
