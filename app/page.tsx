@@ -120,7 +120,7 @@ const s2 = () => {
 const s3 = () => {
   console.log("s3333333");
   ReactGA.event("purchase", {
-    transaction_id: "T_100045",
+    transaction_id: `T_${Date.now()}`,
     currency: "AUD",
     value: 199.0,
     tax: 0,
