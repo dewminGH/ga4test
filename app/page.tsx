@@ -119,7 +119,7 @@ export default function Home() {
     console.log("s111111");
     ReactGA.event("add_to_cart", {
       currency: "AUD",
-      // value: 199.0,
+      value: items.filter((i) => i.item_id === id)[0].price ?? 0,
       items: items.filter((i) => i.item_id === id),
     });
   };
