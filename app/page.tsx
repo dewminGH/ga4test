@@ -2,8 +2,9 @@
 import ReactGA from "react-ga4";
 
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { v4 as uuidv4 } from "uuid";
 
 const checkFNs = () => {
   console.log("start");
@@ -42,103 +43,36 @@ const checkFNs = () => {
   console.log("end");
 };
 
-const checkFN = () => {
-  const category = "category";
-  const identifier = "test ga4 kit today";
-  const cntx = "temp";
+// const checkFN = () => {
+//   const category = "category";
+//   const identifier = "test ga4 kit today";
+//   const cntx = "temp";
 
-  const userID =
-    typeof window !== "undefined"
-      ? (localStorage.getItem("id") ?? "guest")
-      : "unknown";
+//   const userID =
+//     typeof window !== "undefined"
+//       ? (localStorage.getItem("id") ?? "guest")
+//       : "unknown";
 
-  const label = `web-v3-nextJS -user id:${userID}`;
-  const sub = category ?? "web-v3-cart";
-  const xxxx = JSON.stringify({
-    item_id: "productId",
-    quantity: 22,
-    metaData: "sss",
-  });
-  ReactGA.gtag("event", identifier, {
-    // DO NOT use send_to here if you already initialize with the same ID
-    category: sub,
-    label,
-    context: cntx ?? "no-extends",
-    // msg: `${identifier} -label:${label} -sub:${sub} - ${xxxx}`,
-    msg: '"{"pr":{"amount":240,"currency":"NZD","lable":null},"id":149,"nm":"Yorkshire Terrier - Full Breed Profile"}"}]',
-  });
-};
-
-const s0 = () => {
-  console.log("s000");
-  ReactGA.event("view_item", {
-    currency: "AUD",
-    value: 199.0,
-    items: [
-      {
-        item_id: "SKU_123",
-        item_name: "Premium Subscription",
-        price: 199.0,
-        quantity: 1,
-        item_category: "Subscription",
-      },
-    ],
-  });
-};
-
-const s1 = () => {
-  console.log("s111111");
-  ReactGA.event("add_to_cart", {
-    currency: "AUD",
-    value: 199.0,
-    items: [
-      {
-        item_id: "SKU_123",
-        item_name: "Premium Subscription",
-        price: 199.0,
-        quantity: 1,
-      },
-    ],
-  });
-};
-
-const s2 = () => {
-  console.log("s222222");
-  ReactGA.event("begin_checkout", {
-    currency: "AUD",
-    value: 199.0,
-    items: [
-      {
-        item_id: "SKU_123",
-        item_name: "Premium Subscription",
-        price: 199.0,
-        quantity: 1,
-      },
-    ],
-  });
-};
-
-const s3 = () => {
-  console.log("s3333333");
-  ReactGA.event("purchase", {
-    transaction_id: `T_${Date.now()}`,
-    currency: "AUD",
-    value: 199.0,
-    tax: 0,
-    shipping: 0,
-    items: [
-      {
-        item_id: "SKU_123",
-        item_name: "Premium Subscription",
-        price: 199.0,
-        quantity: 1,
-      },
-    ],
-  });
-};
+//   const label = `web-v3-nextJS -user id:${userID}`;
+//   const sub = category ?? "web-v3-cart";
+//   const xxxx = JSON.stringify({
+//     item_id: "productId",
+//     quantity: 22,
+//     metaData: "sss",
+//   });
+//   ReactGA.gtag("event", identifier, {
+//     // DO NOT use send_to here if you already initialize with the same ID
+//     category: sub,
+//     label,
+//     context: cntx ?? "no-extends",
+//     // msg: `${identifier} -label:${label} -sub:${sub} - ${xxxx}`,
+//     msg: '"{"pr":{"amount":240,"currency":"NZD","lable":null},"id":149,"nm":"Yorkshire Terrier - Full Breed Profile"}"}]',
+//   });
+// };
 
 export default function Home() {
   const pathname = usePathname();
+  const [s_items, setS_Items] = useState<string[]>([]);
 
   useEffect(() => {
     ReactGA.send({
@@ -148,9 +82,85 @@ export default function Home() {
   }, [pathname]);
 
   useEffect(() => {
-    ReactGA.initialize("G-2WSVFVWRZ6");
+    ReactGA.initialize("G-SV513EDBRS");
   }, []);
 
+  const items = [
+    {
+      item_id: "SKU_123",
+      item_name: "Premium Subscription",
+      price: 199.0,
+      quantity: 1,
+    },
+    {
+      item_id: "SKU_456",
+      item_name: "Extra Add-on Service",
+      price: 49.0,
+      quantity: 2,
+    },
+    {
+      item_id: "SKU_789",
+      item_name: "Gift Package",
+      price: 15.0,
+      quantity: 1,
+    },
+  ];
+
+  const s0 = () => {
+    console.log("s000");
+    ReactGA.event("view_item", {
+      // currency: "AUD",
+      // value: 100,
+      items,
+    });
+  };
+
+  const s1 = (id: string) => {
+    console.log("s111111");
+    ReactGA.event("add_to_cart", {
+      currency: "AUD",
+      // value: 199.0,
+      items: items.filter((i) => i.item_id === id),
+    });
+  };
+
+  const s2 = () => {
+    console.log("s222222");
+    ReactGA.event("begin_checkout");
+
+    // {
+    //   currency: "AUD",
+    //   value: 199.0,
+    //   items: [
+    //     {
+    //       item_id: "SKU_123",
+    //       item_name: "Premium Subscription",
+    //       price: 199.0,
+    //       quantity: 1,
+    //     },
+    //   ],
+    // }
+  };
+
+  const s3 = () => {
+    console.log("s3333333");
+    const itesmtosend = items.filter((i) => s_items.includes(i.item_id));
+
+    console.log("s3333333", itesmtosend);
+    // const x = Math.floor(Math.random() * 10) + 1;
+    // console.log(">>>>>", x * 100);
+    ReactGA.event("purchase", {
+      transaction_id: uuidv4(),
+      currency: "AUD",
+      value: itesmtosend.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0,
+      ),
+      tax: 0,
+      shipping: 0,
+      items: [...itesmtosend],
+    });
+  };
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
@@ -162,9 +172,23 @@ export default function Home() {
           height={20}
           priority
         />
-        <div onClick={() => checkFN()}>ssssssspspspspsppspsps</div>
         <div onClick={() => s0()}>s00000</div>
-        <div onClick={() => s1()}>11111</div>
+        {items.map((i) => (
+          <div key={i.item_id}>
+            {i.item_name}
+            <input
+              type="checkbox"
+              checked={s_items.includes(i.item_id)}
+              onClick={() => {
+                setS_Items((prv) => [...prv, i.item_id]);
+                s1(i.item_id);
+              }}
+            />
+          </div>
+        ))}
+        {/* <div onClick={() => checkFN()}>ssssssspspspspsppspsps</div> */}
+
+        {/* <div onClick={() => s1()}>11111</div> */}
         <div onClick={() => s2()}>2222222</div>
         <div onClick={() => s3()}>3333333</div>
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
