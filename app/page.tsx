@@ -104,6 +104,12 @@ export default function Home() {
       price: 15.0,
       quantity: 1,
     },
+    {
+      item_id: "SKU_000",
+      item_name: "Mini Subscription",
+      price: 20,
+      quantity: 2,
+    },
   ];
 
   const s0 = () => {
